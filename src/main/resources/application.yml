@@ -1,0 +1,7 @@
+spring:
+    data:
+        mongodb:
+            auto-index-creation: true
+            database: performance
+            port: 27017
+            host: localhost

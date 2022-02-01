@@ -1,0 +1,33 @@
+version: "3.8"
+services:
+  mongodb:
+    image: mongo
+    container_name: performance-mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - data:/data
+    environment:
+      - MONGO_INITDB_DATABASE=performance
+  mongo-express:
+    image: mongo-express
+    container_name: performance-mongo-express
+    ports:
+      - "8081:8081"
+    depends_on:
+      - mongodb
+    environment:
+      - ME_CONFIG_MONGODB_SERVER=mongodb
+      - ME_CONFIG_MONGODB_DATABASE=performance
+  redis:
+    container_name: performance-redis
+    hostname: redis
+    image: redis
+    ports:
+      - 6379:6379
+
+volumes:
+  data: {}
+ 
+networks:
+  default:
